@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+#canvas1 {
+  position: fixed;
+  inset: 0;
+  background-color: #888;
+   width: 100dvw;
+    height: 100dvh; 
+}
