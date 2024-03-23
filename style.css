@@ -1,11 +1,30 @@
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 #canvas1 {
   position: fixed;
   inset: 0;
-  background-color: #888;
-   width: 100dvw;
-    height: 100dvh; 
+  width: 100dvw;
+  height: 100dvh;
+  mix-blend-mode: difference;
+}
+
+section {
+  width: 100dvw;
+  height: 100dvh;
+  /* background-color: rgb(34, 47, 110);   */
+}
+
+h1 {
+  font-size: 30rem;
+  text-align: center;
+  color: rgb(255 145 54 / 100%);
+
+  user-select: none;
+  text-decoration: rgb(38, 66, 224) wavy underline;
+  text-underline-offset: 3rem;
+  text-decoration-thickness: 2.5rem;
+  text-shadow: 5px 5px #222;
 }
