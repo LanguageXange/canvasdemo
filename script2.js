@@ -1,33 +1,28 @@
+// random background particles on Click event
 const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
-// console.log(ctx, "canvas 2d context");
 const particlesArr = [];
 let hue = 0;
 let increment = 3;
-
 // SETTING CANVAS
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 // RESIZE EVENT LISTENER
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
-
 // global variable
 const mouse = {
   x: undefined,
   y: undefined,
 };
-
-
-
 class Particle {
   constructor() {
     this.x = mouse.x;
     this.y = mouse.y;
-
+    // this.x = Math.random() * canvas.width;
+    // this.y = Math.random() * canvas.width;
     this.size = Math.random() * 20 + 1;
     this.speedX = Math.random() * 3 - 1.5;
     this.speedY = Math.random() * 3 - 1.5; // random num between +1.5 and -1.5
@@ -56,35 +51,31 @@ class Particle {
     }
 
     // shrink the particle
-    if (this.size > 5) this.size -= 0.05;
+    if (this.size > 5) this.size -= 0.01;
   }
 
   draw() {
     ctx.beginPath();
-    //ctx.fillStyle = this.color; // random color
-     ctx.fillStyle = "#fff"; //
-
-   // ctx.fillStyle = this.hueColor; // inner loop to create satellite
+    ctx.fillStyle = this.hueColor; // inner loop to create satellite
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
   }
 }
 
 
-// Create new particles on mouse move
-canvas.addEventListener("mousemove", (e) => {
+// Create new particles on Click
+canvas.addEventListener("click", (e) => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
     particlesArr.push(new Particle());
   }
 });
-
 // HANDLE PARTICLE - update coordinates and draw on the canvas
 function handleParticle() {
   for (let i = 0; i < particlesArr.length; i++) {
     const particle = particlesArr[i];
-    particle.update();
+   particle.update();
     particle.draw();
 
     // inner for loop
@@ -93,11 +84,9 @@ function handleParticle() {
       const dx = particle.x - particle2.x;
       const dy = particle.y - particle2.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
-      if (distance < 80) {
+      if (distance < 250) {
         ctx.beginPath();
-        //ctx.strokeStyle = particle.hueColor;
-        ctx.strokeStyle = "#fff";
-        //ctx.lineWidth = particle.size * 10;
+        ctx.strokeStyle = particle.hueColor;
         ctx.lineWidth = 2;
         ctx.moveTo(particle.x, particle.y);
         ctx.lineTo(particle2.x, particle2.y);
@@ -115,11 +104,6 @@ function handleParticle() {
 
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // instead of clear rect we fill the canvas with a semitransparent background so that we can see a bit trailing
-  // ctx.fillStyle = "rgba(0,0,0,0.1)";
-  // ctx.fillRect(0, 0, canvas.width, canvas.height);
-  // call the function
   handleParticle();
   // so that hue is between 0 - 360
   hue = (hue + increment) % 360;

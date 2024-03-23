@@ -14,13 +14,14 @@ body {
 section {
   width: 100dvw;
   height: 100dvh;
-  /* background-color: rgb(34, 47, 110);   */
+ /* background-color: rgb(34, 47, 110);    */
 }
 
 h1 {
   font-size: 30rem;
   text-align: center;
   color: rgb(255 145 54 / 100%);
+
 
   user-select: none;
   text-decoration: rgb(38, 66, 224) wavy underline;
