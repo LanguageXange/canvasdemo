@@ -1,1 +1,1 @@
-Canvas demo app
+Canvas demo app ok
